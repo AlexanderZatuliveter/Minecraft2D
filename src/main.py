@@ -23,10 +23,10 @@ all_sprites.add(player)
 while True:
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
-        if keys[pygame.K_ESCAPE]:
+        if keys[pygame.K_ESCAPE] or event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
+            
     all_sprites.update()
     camera.update(player)
 

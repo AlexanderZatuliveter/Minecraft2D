@@ -13,16 +13,16 @@ class Player2(pygame.sprite.Sprite):
         self._x = x
         self._y = y
 
-        self.update_image()
+        self._update_image()
 
-    def get_combined_width(self):
+    def _get_combined_width(self):
         return max(self._x + img.get_width() for img in self._images)
 
-    def get_combined_height(self):
+    def _get_combined_height(self):
         return max(self._y + img.get_height() for img in self._images)
 
-    def update_image(self):        
-        self.image = pygame.Surface((self.get_combined_width(), self.get_combined_height()), pygame.SRCALPHA)
+    def _update_image(self):        
+        self.image = pygame.Surface((self._get_combined_width(), self._get_combined_height()), pygame.SRCALPHA)
         self.rect = self.image.get_rect()
         self.image.fill((0, 0, 0, 0))  # Clear the surface with transparency
         for img in self._images:
@@ -38,4 +38,4 @@ class Player2(pygame.sprite.Sprite):
             self._y += self.speed
         if keys[pygame.K_w]:
             self._y -= self.speed
-        self.update_image()
+        self._update_image()
