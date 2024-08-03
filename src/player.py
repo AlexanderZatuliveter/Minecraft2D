@@ -17,9 +17,9 @@ class Player(pygame.sprite.Sprite):
 
     def _update_image(self):
         self.image = pygame.Surface((self._x + 250, self._y + 900), pygame.SRCALPHA)
-        self.rect = self.image.get_rect()        
-        self.image.blit(self._body_image, (self._x, self._y))
+        self.rect = self.image.get_rect()
         self._update_legs()
+        self.image.blit(self._body_image, (self._x, self._y))
 
     def _update_legs(self):
         if abs(self.leg_rotate) >= self._max_rotate_angle:
