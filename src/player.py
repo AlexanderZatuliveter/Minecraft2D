@@ -16,22 +16,22 @@ class Player(pygame.sprite.Sprite):
         self._leg_rotate_direction = 1
 
     def _update_image(self):
-        rotated_leg = pygame.transform.rotate(self._leg_image, self.leg_rotate)
-        rotated_leg_rect = rotated_leg.get_rect(center=self._leg_image_rect.center)
-        rotated_leg2 = pygame.transform.rotate(self._leg_image, -self.leg_rotate)
-        rotated_leg_rect2 = rotated_leg2.get_rect(center=self._leg_image_rect.center)
+        self.image = pygame.Surface((self._x + 250, self._y + 900), pygame.SRCALPHA)
+        self.rect = self.image.get_rect()        
+        self.image.blit(self._body_image, (self._x, self._y))
+        self._update_legs()
 
+    def _update_legs(self):
         if abs(self.leg_rotate) >= self._max_rotate_angle:
             self._leg_rotate_direction = -self._leg_rotate_direction
-
         self.leg_rotate += self._leg_rotate_direction
+        self._blit_leg(self._leg_image, self.leg_rotate)
+        self._blit_leg(self._leg_image, -self.leg_rotate)
     
-        self.image = pygame.Surface((self._x + 250, self._y + 900), pygame.SRCALPHA)
-        self.rect = self.image.get_rect()
-        
-        self.image.blit(self._body_image, (self._x, self._y))
-        self.image.blit(rotated_leg, (rotated_leg_rect.x + self._x + 35, rotated_leg_rect.y + self._y +240))
-        self.image.blit(rotated_leg2, (rotated_leg_rect2.x + self._x + 25, rotated_leg_rect2.y + self._y +240))
+    def _blit_leg(self, leg_image, angle):
+        leg = pygame.transform.rotate(leg_image, angle)
+        leg_center = leg.get_rect(center=leg_image.get_rect().center)
+        self.image.blit(leg, (leg_center.x + self._x + 30, leg_center.y + self._y + 240))
 
     def update(self):
         keys = pygame.key.get_pressed()
