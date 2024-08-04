@@ -5,6 +5,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()        
         self.speed = 3
+        self.is_moving = False
         base_path = os.path.dirname(__file__)         
         self._body_image = pygame.image.load(os.path.join(base_path, 'sprites/body.png'))
         self._leg_image = pygame.image.load(os.path.join(base_path, 'sprites/leg.png')) 
@@ -37,14 +38,16 @@ class Player(pygame.sprite.Sprite):
         self._blit_arm(self._arm_image, self.arm_rotate)
 
     def _update_legs(self):
-        if abs(self.leg_rotate) >= self._max_rotate_angle:
-            self.leg_rotate_direction = -self.leg_rotate_direction
-        self.leg_rotate += self.leg_rotate_direction
+        if self.is_moving:
+            if abs(self.leg_rotate) >= self._max_rotate_angle:
+                self.leg_rotate_direction = -self.leg_rotate_direction
+            self.leg_rotate += self.leg_rotate_direction
 
     def _update_arms(self):
-        if abs(self.arm_rotate) >= self._max_rotate_angle:
-            self.arm_rotate_direction = -self.arm_rotate_direction
-        self.arm_rotate += self.arm_rotate_direction
+        if self.is_moving:
+            if abs(self.arm_rotate) >= self._max_rotate_angle:
+                self.arm_rotate_direction = -self.arm_rotate_direction
+            self.arm_rotate += self.arm_rotate_direction
     
     def _blit_leg(self, leg_image, angle):
         leg = pygame.transform.rotate(leg_image, angle)
@@ -58,12 +61,18 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         keys = pygame.key.get_pressed()
+        is_moving = False
         if keys[pygame.K_d] and self._x < 1175:
             self._x += self.speed
+            is_moving = True
         if keys[pygame.K_a] and self._x > 0:
             self._x -= self.speed
+            is_moving = True
         if keys[pygame.K_s] and self._y < 500:
             self._y += self.speed
+            is_moving = True
         if keys[pygame.K_w] and self._y > 0:
             self._y -= self.speed
+            is_moving = True
+        self.is_moving = is_moving
         self._update_image()
