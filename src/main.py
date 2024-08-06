@@ -1,6 +1,7 @@
 import pygame
 import sys
 from camera import Camera
+from game_field import GameField
 from player import Player
 
 pygame.init()
@@ -18,6 +19,9 @@ camera = Camera(world_width, world_height)
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 all_sprites = pygame.sprite.Group()
+
+game_field = GameField(SCREEN_WIDTH, SCREEN_HEIGHT)
+
 all_sprites.add(player)
 
 while True:
