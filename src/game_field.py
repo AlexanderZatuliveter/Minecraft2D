@@ -10,7 +10,7 @@ class GameField:
         for i in range(x):
             for j in range(y):
                 self.field[i][j] = Block()
-        for n in range(0, 200):
+        for n in range(0, 100):
             rand_x = random.randint(1, x-1)
             rand_y = random.randint(1, y-1)
             print(f"{rand_x=}, {rand_y=}")
@@ -28,5 +28,4 @@ class GameField:
             #if block is not Stone: continue
             #block = i.item()
             #screen.blit(block.image, block.image.get_rect())
-            if block.image:
-                screen.blit(block.image, (x * 16, y * 16))
+            screen.blit(block.image, (x * 16, y * 16))
