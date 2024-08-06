@@ -7,4 +7,4 @@ class Stone(Block):
     def __init__(self) -> None:
         super().__init__()   
         utils = Utils()               
-        self.image = utils.load_image('sprites/body.png')
+        self.image = utils.load_image('sprites/blocks/stone.png')
