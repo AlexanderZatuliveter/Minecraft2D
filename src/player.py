@@ -1,17 +1,19 @@
 import os
 import pygame
 
+from utils import Utils
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
-        super().__init__()        
+        super().__init__()
         self.speed = 3
         self.is_moving = False
-        base_path = os.path.dirname(__file__)         
-        self._body_image = pygame.image.load(os.path.join(base_path, 'sprites/body.png'))
-        self._leg_image = pygame.image.load(os.path.join(base_path, 'sprites/leg.png')) 
+        utils = Utils()      
+        self._body_image = utils.load_image('sprites/body.png')
+        self._leg_image = utils.load_image('sprites/leg.png')
         self._leg_image_rect = self._leg_image.get_rect()
 
-        self._arm_image = pygame.image.load(os.path.join(base_path, 'sprites/arm.png')) 
+        self._arm_image = utils.load_image('sprites/arm.png')
         self._arm_image_rect = self._arm_image.get_rect()
 
         self._x = x

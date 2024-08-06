@@ -1,5 +1,10 @@
+import pygame
 from blocks.block import Block
+from utils import Utils
 
 
 class Stone(Block):
-    pass
+    def __init__(self) -> None:
+        super().__init__()   
+        utils = Utils()               
+        self.image = utils.load_image('sprites/body.png')
