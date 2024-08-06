@@ -18,7 +18,7 @@ player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 all_sprites = pygame.sprite.Group()
 
-game_field = GameField(120, 80)
+game_field = GameField(50, 40)
 
 all_sprites.add(player)
 
@@ -34,8 +34,8 @@ while True:
     camera.update(player)
 
     screen.fill((135, 206, 235))
-    all_sprites.draw(screen)
     game_field.draw(screen)
+    all_sprites.draw(screen)
     pygame.display.flip()
 
     clock.tick(60)
