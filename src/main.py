@@ -12,15 +12,13 @@ SCREEN_HEIGHT = 800
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-world_width = 1200
-world_height = 800
-camera = Camera(world_width, world_height)
+camera = Camera(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 all_sprites = pygame.sprite.Group()
 
-game_field = GameField(SCREEN_WIDTH, SCREEN_HEIGHT)
+game_field = GameField(120, 80)
 
 all_sprites.add(player)
 
@@ -32,10 +30,12 @@ while True:
             sys.exit()
             
     all_sprites.update()
+    game_field.update()
     camera.update(player)
 
     screen.fill((135, 206, 235))
     all_sprites.draw(screen)
+    game_field.draw(screen)
     pygame.display.flip()
 
     clock.tick(60)
