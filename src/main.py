@@ -28,7 +28,7 @@ while True:
         if keys[pygame.K_ESCAPE] or event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-            
+
     all_sprites.update()
     game_field.update()
     camera.update(player)

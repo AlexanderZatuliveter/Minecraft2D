@@ -3,6 +3,7 @@ import numpy as np
 
 from blocks import Block, Stone
 
+
 class GameField:
     def __init__(self, x, y):
         self.field = np.zeros((x, y), dtype=object)
@@ -17,7 +18,7 @@ class GameField:
     def update(self):
         for (x, y), block in np.ndenumerate(self.field):
             block.update()
-        
+
     def draw(self, screen):
         for (x, y), block in np.ndenumerate(self.field):
             if block.image:
