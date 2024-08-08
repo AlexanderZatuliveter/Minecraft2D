@@ -9,3 +9,4 @@ class Block(pygame.sprite.Sprite):
         # utils = Utils()
         self.image = None
         # self.image = utils.load_image('sprites/blocks/empty_block.png')
+        self.is_solid = False

@@ -8,3 +8,4 @@ class Stone(Block):
         super().__init__()
         utils = Utils()
         self.image = utils.load_image('sprites/blocks/stone.png')
+        self.is_solid = True

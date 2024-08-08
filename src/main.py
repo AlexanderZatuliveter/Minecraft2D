@@ -14,11 +14,12 @@ clock = pygame.time.Clock()
 
 camera = Camera(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
-player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+game_field = GameField(50, 40)
+
+player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, game_field)
 
 all_sprites = pygame.sprite.Group()
 
-game_field = GameField(50, 40)
 
 while True:
     keys = pygame.key.get_pressed()
