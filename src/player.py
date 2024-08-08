@@ -56,14 +56,12 @@ class Player(pygame.sprite.Sprite):
     def _blit_leg(self, leg_image, angle):
         leg = pygame.transform.rotate(leg_image, angle)
         leg_center = leg.get_rect(center=leg_image.get_rect().center)
-        self.image.blit(leg, (leg_center.x + self._x +
-                        3, leg_center.y + self._y + 24))
+        self.image.blit(leg, (leg_center.x + self._x + 3, leg_center.y + self._y + 24))
 
     def _blit_arm(self, arm_image, angle):
         arm = pygame.transform.rotate(arm_image, angle)
         arm_center = arm.get_rect(center=arm_image.get_rect().center)
-        self.image.blit(arm, (arm_center.x + self._x +
-                        4, arm_center.y + self._y + 1))
+        self.image.blit(arm, (arm_center.x + self._x + 4, arm_center.y + self._y + 1))
 
     def update(self):
         keys = pygame.key.get_pressed()
