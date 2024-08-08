@@ -20,8 +20,6 @@ all_sprites = pygame.sprite.Group()
 
 game_field = GameField(50, 40)
 
-all_sprites.add(player)
-
 while True:
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
@@ -29,13 +27,14 @@ while True:
             pygame.quit()
             sys.exit()
 
-    all_sprites.update()
+    player.update()
     game_field.update()
-    camera.update(player)
+    camera.update(player.x, player.y)
 
     screen.fill((135, 206, 235))
     game_field.draw(screen)
-    all_sprites.draw(screen)
+    screen.blit(player.player_view.image, player.player_view.image.get_rect())
+
     pygame.display.flip()
 
     clock.tick(60)
