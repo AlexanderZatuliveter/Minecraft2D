@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 
 camera = Camera(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
-game_field = GameField(50, 40)
+game_field = GameField(50, 33)
 
 player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, game_field)
 
