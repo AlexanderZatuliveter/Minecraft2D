@@ -35,6 +35,6 @@ class GameField:
                 screen.blit(block.image, (x * self.__block_size, y * self.__block_size))
 
     def is_solid(self, x, y):
-        xpos = int((x+8) / self.__block_size)
+        xpos = int(x / self.__block_size)
         ypos = int(y / self.__block_size)
         return self.field[xpos][ypos].is_solid
