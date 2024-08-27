@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.fall_time = 0
 
     def gravity(self):
-        if not self._game_field.is_solid(self.x, self.y):
+        if not self._game_field.is_solid(self.x, self.y+75):
             self.fall_time += 0.7
             self.y += self.gravity_force * self.fall_time
         else:
@@ -32,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a] and self.x > 0:
             self.x -= self.speed
             is_moving = True
-        if keys[pygame.K_w] and self.y > 0:
+        if keys[pygame.K_SPACE] and self.y > 0:
             self.y -= 15
             self.gravity()
             is_moving = True
