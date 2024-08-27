@@ -3,7 +3,6 @@ import sys
 from camera import Camera
 from game_field import GameField
 from player import Player
-from blocks import Stone
 
 pygame.init()
 
