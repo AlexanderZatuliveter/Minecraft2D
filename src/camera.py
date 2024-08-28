@@ -8,7 +8,7 @@ class Camera:
         self.screen_height = screen_height
 
     def apply(self, entity):
-        return entity.rect.move(self.camera.topleft)
+        return entity.image.get_rect().move(self.camera.topleft)
 
     def update(self, target):
         x = target.rect.centerx + int(self.screen_width / 2)
