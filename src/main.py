@@ -1,23 +1,20 @@
 import pygame
 import sys
-from camera import Camera
 from game_field import GameField
 from player import Player
-from blocks import Stone
+from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH
 
 pygame.init()
 
-screen_width = 1200
-screen_height = 800
 
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 #camera = Camera(screen_width // 2, screen_height // 2)
 
 game_field = GameField(50, 33)
 
-player = Player(screen_width // 2, screen_height // 2, game_field)
+player = Player(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, game_field)
 
 
 while True:

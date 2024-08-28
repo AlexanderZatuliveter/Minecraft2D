@@ -1,11 +1,7 @@
 import random
-from types import NoneType
 import numpy as np
-
-from blocks import Block, Stone
-from camera import Camera
-#from player import Player
-
+from blocks import Stone
+from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH
 
 class GameField:
     def __init__(self, x, y):
@@ -34,7 +30,13 @@ class GameField:
     def draw(self, screen, player):
         for (x, y), block in np.ndenumerate(self.field):
             if block is not None and block.image:
-                screen.blit(block.image, (x * self.__block_size - player.x + 600, y * self.__block_size - player.y + 400))
+                screen.blit(
+                    block.image, 
+                    ( 
+                        x * self.__block_size - player.x + HALF_SCREEN_WIDTH, 
+                        y * self.__block_size - player.y + HALF_SCREEN_HEIGHT
+                    )
+                )
 
     def is_solid(self, x, y):
         xpos = int(x / self.__block_size)

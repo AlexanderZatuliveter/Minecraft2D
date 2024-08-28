@@ -1,6 +1,7 @@
 import pygame
 from game_field import GameField
 from player_view import PlayerView
+from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH
 
 
 class Player(pygame.sprite.Sprite):
@@ -41,5 +42,4 @@ class Player(pygame.sprite.Sprite):
             self.y -= 3
             is_moving = True
         self.is_moving = is_moving
-        #self.player_view.update_image(self.x, self.y, self.is_moving)
-        self.player_view.update_image(600, 400, self.is_moving)
+        self.player_view.update_image(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, self.is_moving)
