@@ -3,6 +3,8 @@ from types import NoneType
 import numpy as np
 
 from blocks import Block, Stone
+from camera import Camera
+#from player import Player
 
 
 class GameField:
@@ -29,10 +31,10 @@ class GameField:
         for (x, y), block in np.ndenumerate(self.field):
             if block is not None: block.update()
 
-    def draw(self, screen):
+    def draw(self, screen, player):
         for (x, y), block in np.ndenumerate(self.field):
             if block is not None and block.image:
-                screen.blit(block.image, (x * self.__block_size, y * self.__block_size))
+                screen.blit(block.image, (x * self.__block_size - player.x + 600, y * self.__block_size - player.y + 400))
 
     def is_solid(self, x, y):
         xpos = int(x / self.__block_size)

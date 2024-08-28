@@ -13,7 +13,7 @@ screen_height = 800
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 
-camera = Camera(screen_width // 2, screen_height // 2)
+#camera = Camera(screen_width // 2, screen_height // 2)
 
 game_field = GameField(50, 33)
 
@@ -29,14 +29,14 @@ while True:
 
     player.update()
     game_field.update()
-    camera.update(player.player_view)
+    #camera.update(player.player_view)
 
     screen.fill((135, 206, 235))
-    game_field.draw(screen)
+    game_field.draw(screen, player)
     screen.blit(player.player_view.image, player.player_view.image.get_rect())
 
-    for entity in game_field.enumerate():
-        screen.blit(entity.image, camera.apply(entity))
+    # for entity in game_field.enumerate():
+    #     screen.blit(entity.image, camera.apply(entity))
 
     pygame.display.flip()
     clock.tick(60)

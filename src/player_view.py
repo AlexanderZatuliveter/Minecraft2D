@@ -24,8 +24,8 @@ class PlayerView(pygame.sprite.Sprite):
 
         self._max_rotate_angle = 25
 
-    def _update_image(self, x, y, is_moving):
-        self.image = pygame.Surface((x + 250, y + 900), pygame.SRCALPHA)
+    def update_image(self, x, y, is_moving):
+        self.image = pygame.Surface((x + 30, y + 90), pygame.SRCALPHA)
         self.rect = self.image.get_rect()
 
         if is_moving:
