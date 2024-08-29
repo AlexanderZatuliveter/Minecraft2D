@@ -18,28 +18,27 @@ class Player(pygame.sprite.Sprite):
         self.velocity_y = 0
 
     def __fall(self):
-        if not self.__is_solid():
+        if not self._game_field.is_solid(self.x+4, self.y+75):
             self.velocity_y += self.gravity_force
             self.y += self.velocity_y
         else:
             self.velocity_y = 0
-
-    def __is_solid(self):
-        return self._game_field.is_solid(self.x+8, self.y+75)
     
     def update(self):
         self.__fall()
         keys = pygame.key.get_pressed()
         is_moving = False
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d] and not self._game_field.is_solid(self.x+6, self.y+25) and not self._game_field.is_solid(self.x+6, self.y+55):
             self.x += self.speed
             is_moving = True
-        if keys[pygame.K_a]:
+        if keys[pygame.K_a] and not self._game_field.is_solid(self.x-6, self.y+25) and not self._game_field.is_solid(self.x-6, self.y+55):
             self.x -= self.speed
             is_moving = True
-        if keys[pygame.K_SPACE] and self.__is_solid():
+        if keys[pygame.K_SPACE] and self._game_field.is_solid(self.x+4, self.y+75):
             self.velocity_y = self.jump_force
             self.y -= 3
             is_moving = True
+        if self._game_field.is_solid(self.x+4, self.y-1):
+            self.velocity_y = 0
         self.is_moving = is_moving
         self.player_view.update_image(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, self.is_moving)

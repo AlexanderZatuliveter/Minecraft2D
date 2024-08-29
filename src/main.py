@@ -6,7 +6,6 @@ from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_
 
 pygame.init()
 
-
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -16,6 +15,11 @@ game_field = GameField(50, 33)
 
 player = Player(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, game_field)
 
+pygame.mixer.init()
+
+pygame.mixer.music.load('Minecraft_Music.mp3')
+
+pygame.mixer.music.play(-1)
 
 while True:
     keys = pygame.key.get_pressed()
