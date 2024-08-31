@@ -1,7 +1,8 @@
 import random
+import pygame
 import numpy as np
 from blocks import Stone, Dirt
-from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH
+from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, BLOCK_SIZE
 
 class GameField:
     def __init__(self, x, y):
@@ -28,22 +29,40 @@ class GameField:
             if block is not None: block.update()
 
     def draw(self, screen, player):
-        for (x, y), block in np.ndenumerate(self.field):
+        for (bx, by), block in np.ndenumerate(self.field):
             if block is not None and block.image:
                 screen.blit(
                     block.image, 
-                    ( 
-                        x * self.__block_size - player.x + HALF_SCREEN_WIDTH,
-                        y * self.__block_size - player.y + HALF_SCREEN_HEIGHT
-                    )
+                    self._get_block_position(player, bx, by)
                 )
 
+    def _get_block_position(self, player, bx, by):
+        return ( 
+            bx * self.__block_size - player.x + HALF_SCREEN_WIDTH,
+            by * self.__block_size - player.y + HALF_SCREEN_HEIGHT
+        )
+    
+    def get_block_rect(self, x, y, player) -> pygame.Rect:        
+        pos = self.get_block_field_position(x, y)
+        screen_pos = self._get_block_position(player, pos[0], pos[1])
+        return pygame.Rect(screen_pos[0], screen_pos[1], BLOCK_SIZE, BLOCK_SIZE)
+
+    def get_block_field_position(self, x, y):
+        return (
+            int(x // self.__block_size),
+            int(y // self.__block_size)
+        )
+
+    def get_block(self, x, y):
+        pos = self.get_block_field_position(x, y)
+        block = self.field[pos[0]][pos[1]]
+        return block
+
     def is_solid(self, x, y):
-        xpos = int(x / self.__block_size)
-        ypos = int(y / self.__block_size)
-        block = self.field[xpos][ypos]
+        block = self.get_block(x, y)
         if block is None: return False
         return block.is_solid
 
     def enumerate(self):
         return [value for index, value in np.ndenumerate(self.field) if value is not None]
+
