@@ -1,4 +1,3 @@
-import pygame
 from blocks.block import Block
 from utils import Utils
 
