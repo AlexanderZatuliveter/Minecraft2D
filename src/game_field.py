@@ -1,7 +1,7 @@
 import random
 import pygame
 import numpy as np
-from blocks import Stone, Dirt
+from blocks import Stone, Dirt, Bedrock
 from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, BLOCK_SIZE
 
 
@@ -11,12 +11,12 @@ class GameField:
         self.field.fill(None)
 
         for i in range(x):
-            self.field[i][0] = random.choice((Dirt(), Stone()))
-            self.field[i][y-1] = random.choice((Dirt(), Stone()))
+            self.field[i][0] = Bedrock()
+            self.field[i][y-1] = Bedrock()
 
         for j in range(y):
-            self.field[0][j] = random.choice((Dirt(), Stone()))
-            self.field[x-1][j] = random.choice((Dirt(), Stone()))
+            self.field[0][j] = Bedrock()
+            self.field[x-1][j] = Bedrock()
 
         for n in range(200):
             rand_x = random.randint(1, x-1)
@@ -61,8 +61,7 @@ class GameField:
         if block:
             self.field[pos[0]][pos[1]] = None
             self._mp3_play(block.sound)
-            
-            
+
     def get_block(self, x, y):
         pos = self.get_block_field_position(x, y)
         block = self.field[pos[0]][pos[1]]
