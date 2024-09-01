@@ -18,7 +18,12 @@ class Player(pygame.sprite.Sprite):
         self.velocity_y = 0
 
     def __fall(self):
-        if not self._game_field.is_solid(self.x+4, self.y+75):
+
+        # top collision check
+        if self.velocity_y < 0 and not self._can_walk_to(self.x, self.y):
+            self.velocity_y = 0
+
+        if not self._game_field.is_solid(self.x+4, self.y + BLOCK_SIZE * 3):
             self.velocity_y += self.gravity_force
             self.y += self.velocity_y
         else:
@@ -38,13 +43,11 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a]:
             is_moving = self._move_left()
 
-        if keys[pygame.K_SPACE] and self._game_field.is_solid(self.x+4, self.y+75):
+        # can jump only if on the ground (velocity_y == 0)
+        if keys[pygame.K_SPACE] and self.velocity_y == 0:
             self.velocity_y = self.jump_force
             self.y -= 3
             is_moving = True
-
-        if self._game_field.is_solid(self.x+4, self.y-1):
-            self.velocity_y = 0
 
         self.is_moving = is_moving
         self.player_view.update_image(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, self.is_moving)
@@ -60,12 +63,10 @@ class Player(pygame.sprite.Sprite):
         if not self._can_walk_to(self.x + BLOCK_SIZE, self.y + BLOCK_SIZE + BLOCK_SIZE + HALF_BLOCK_SIZE):
             return False
 
-
         self.x += self.speed
 
         return True
-    
-    
+
     def _move_left(self) -> bool:
 
         if not self._can_walk_to(self.x - HALF_BLOCK_SIZE / 2, self.y + HALF_BLOCK_SIZE):
@@ -77,11 +78,9 @@ class Player(pygame.sprite.Sprite):
         if not self._can_walk_to(self.x - HALF_BLOCK_SIZE / 2, self.y + BLOCK_SIZE + BLOCK_SIZE + HALF_BLOCK_SIZE):
             return False
 
-
         self.x -= self.speed
 
         return True
-
 
     def _can_walk_to(self, x, y):
         top_block = self._game_field.get_block(x, y)

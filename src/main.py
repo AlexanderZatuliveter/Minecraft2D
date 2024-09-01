@@ -17,9 +17,9 @@ player = Player(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, game_field)
 
 pygame.mixer.init()
 
-pygame.mixer.music.load('src/music/Minecraft_Music.mp3')
+# pygame.mixer.music.load('src/music/Minecraft_Music.mp3')
 
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.play(-1)
 
 while True:
     keys = pygame.key.get_pressed()
