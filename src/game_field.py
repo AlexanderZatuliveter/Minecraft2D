@@ -57,8 +57,12 @@ class GameField:
 
     def drop_block(self, x, y):
         pos = self.get_block_field_position(x, y)
-        self.field[pos[0]][pos[1]] = None
-
+        block = self.field[pos[0]][pos[1]]
+        if block:
+            self.field[pos[0]][pos[1]] = None
+            self._mp3_play(block.sound)
+            
+            
     def get_block(self, x, y):
         pos = self.get_block_field_position(x, y)
         block = self.field[pos[0]][pos[1]]
@@ -72,3 +76,7 @@ class GameField:
 
     def enumerate(self):
         return [value for index, value in np.ndenumerate(self.field) if value is not None]
+
+    def _mp3_play(self, path):
+        self.sound = pygame.mixer.Sound(path)
+        self.sound.play()

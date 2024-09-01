@@ -35,7 +35,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.__fall()
-        print(f'player pos {self.x=}, {self.y=}')
+        #print(f'player pos {self.x=}, {self.y=}')
         left, middle, right = pygame.mouse.get_pressed()
         if left:
             mouse_x, mouse_y = pygame.mouse.get_pos()

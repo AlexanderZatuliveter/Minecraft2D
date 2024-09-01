@@ -6,3 +6,4 @@ class Stone(Block):
         super().__init__()
         self._load_image('sprites/blocks/stone.png')
         self.is_solid = True
+        self.sound = "src/sounds/stone1.mp3"
