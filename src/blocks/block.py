@@ -13,4 +13,3 @@ class Block(pygame.sprite.Sprite):
         utils = Utils()
         self.image = utils.load_image(path)
         self.rect = self.image.get_rect()
-        print(type(self.rect))
