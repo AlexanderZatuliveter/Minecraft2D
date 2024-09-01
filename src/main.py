@@ -9,7 +9,7 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-#camera = Camera(screen_width // 2, screen_height // 2)
+# camera = Camera(screen_width // 2, screen_height // 2)
 
 game_field = GameField(50, 33)
 
@@ -17,7 +17,7 @@ player = Player(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, game_field)
 
 pygame.mixer.init()
 
-pygame.mixer.music.load('Minecraft_Music.mp3')
+pygame.mixer.music.load('src/music/Minecraft_Music.mp3')
 
 pygame.mixer.music.play(-1)
 
@@ -30,7 +30,7 @@ while True:
 
     player.update()
     game_field.update()
-    #camera.update(player.player_view)
+    # camera.update(player.player_view)
 
     screen.fill((135, 206, 235))
     game_field.draw(screen, player)

@@ -17,7 +17,13 @@
     "python.analysis.typeCheckingMode": "basic",
     "cSpell.words": [
         "blit",
+        "centerx",
+        "centery",
+        "colliderect",
         "consts",
-        "pygame"
+        "dtype",
+        "ndenumerate",
+        "pygame",
+        "SRCALPHA"
     ]
 }
