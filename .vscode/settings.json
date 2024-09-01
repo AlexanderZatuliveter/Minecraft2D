@@ -1,10 +1,23 @@
 {
     "files.exclude": {
-        "**/__pycache__": true
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.vs": true,
+        "**/.venv": true
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
     },
-    "autopep8.args": ["--max-line-length", "120"]
+    "autopep8.args": [
+        "--indent-size=4",
+        "--max-line-length=120"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "cSpell.words": [
+        "blit",
+        "consts",
+        "pygame"
+    ]
 }
