@@ -2,6 +2,7 @@ import pygame
 from game_field import GameField
 from player_view import PlayerView
 from consts import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, BLOCK_SIZE, HALF_BLOCK_SIZE
+from blocks import block
 
 
 class Player(pygame.sprite.Sprite):
@@ -23,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         if self.velocity_y < 0 and not self._can_walk_to(self.x, self.y):
             self.velocity_y = 0
 
-        if not self._game_field.is_solid(self.x+4, self.y + BLOCK_SIZE * 3):
+        if self._can_walk_to(self.x+4, self.y + BLOCK_SIZE * 3):
             self.velocity_y += self.gravity_force
             self.y += self.velocity_y
         else:
@@ -34,6 +35,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.__fall()
+        print(f'player pos {self.x=}, {self.y=}')
+        left, middle, right = pygame.mouse.get_pressed()
+        if left:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            # print(f'mouse {mouse_x=}, {mouse_y=}')
+            self._game_field.drop_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y + self.y - HALF_SCREEN_HEIGHT)
+
         keys = pygame.key.get_pressed()
         is_moving = False
 
@@ -83,11 +91,11 @@ class Player(pygame.sprite.Sprite):
         return True
 
     def _can_walk_to(self, x, y):
-        top_block = self._game_field.get_block(x, y)
+        block = self._game_field.get_block(x, y)
 
-        if top_block:
-            top_block_rect = self._game_field.get_block_rect(x, y, self)
-            if not top_block_rect.colliderect(self._get_rect()):
+        if block:
+            block_rect = self._game_field.get_block_rect(x, y, self)
+            if not block_rect.colliderect(self._get_rect()):
                 return False
 
         return True
