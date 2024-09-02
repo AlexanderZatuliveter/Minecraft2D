@@ -32,11 +32,9 @@ class GameField:
 
     def draw(self, screen, player):
         for (bx, by), block in np.ndenumerate(self.field):
-            if block is not None and block.image:
-                screen.blit(
-                    block.image,
-                    self._get_block_position(player, bx, by)
-                )
+            if block is not None:
+                pos = self._get_block_position(player, bx, by)
+                block.draw(screen, pos)
 
     def _get_block_position(self, player, bx, by):
         return (
