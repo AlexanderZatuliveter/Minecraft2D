@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_force = -6
         self.velocity_y = 0
         self.is_moving_left = False
-        self.hit_force = 1
+        self.hit_force = 5
 
     def __fall(self):
 
