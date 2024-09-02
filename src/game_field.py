@@ -63,6 +63,13 @@ class GameField:
                 if block.sound:
                     self._mp3_play(block.sound)
 
+    def put_block(self, x, y):
+        pos = self.get_block_field_position(x, y)
+        block = self.field[pos[0]][pos[1]]
+        if block == None:
+            self.field[pos[0]][pos[1]] = random.choice((Stone(), Dirt()))
+            self._mp3_play(self.field[pos[0]][pos[1]].sound)
+
     def get_block(self, x, y):
         pos = self.get_block_field_position(x, y)
         block = self.field[pos[0]][pos[1]]

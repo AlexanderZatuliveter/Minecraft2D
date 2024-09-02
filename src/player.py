@@ -35,12 +35,12 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.__fall()
-        #print(f'player pos {self.x=}, {self.y=}')
         left, middle, right = pygame.mouse.get_pressed()
+        mouse_x, mouse_y = pygame.mouse.get_pos()
         if left:
-            mouse_x, mouse_y = pygame.mouse.get_pos()
-            # print(f'mouse {mouse_x=}, {mouse_y=}')
             self._game_field.drop_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y + self.y - HALF_SCREEN_HEIGHT)
+        if right:
+            self._game_field.put_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y + self.y - HALF_SCREEN_HEIGHT)
 
         keys = pygame.key.get_pressed()
         is_moving = False
