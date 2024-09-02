@@ -1,3 +1,4 @@
+import sys
 import pygame
 from utils import Utils
 
@@ -8,6 +9,8 @@ class Block(pygame.sprite.Sprite):
         self.image = None
         self.rect = None
         self.is_solid = False
+        self.health = 1
+        self.sound = None
 
     def _load_image(self, path):
         utils = Utils()

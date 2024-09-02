@@ -7,3 +7,4 @@ class Dirt(Block):
         self._load_image('sprites/blocks/dirt.png')
         self.is_solid = True
         self.sound = "src/sounds/grass1.mp3"
+        self.health = 10

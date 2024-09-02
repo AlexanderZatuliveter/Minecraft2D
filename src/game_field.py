@@ -19,8 +19,8 @@ class GameField:
             self.field[x-1][j] = Bedrock()
 
         for n in range(200):
-            rand_x = random.randint(1, x-1)
-            rand_y = random.randint(1, y-1)
+            rand_x = random.randint(1, x-2)
+            rand_y = random.randint(1, y-2)
             self.field[rand_x][rand_y] = random.choice((Dirt(), Stone()))
 
         self.__block_size = 24
@@ -59,8 +59,11 @@ class GameField:
         pos = self.get_block_field_position(x, y)
         block = self.field[pos[0]][pos[1]]
         if block:
-            self.field[pos[0]][pos[1]] = None
-            self._mp3_play(block.sound)
+            block.health -= 1
+            if block.health <= 0:
+                self.field[pos[0]][pos[1]] = None
+                if block.sound:
+                    self._mp3_play(block.sound)
 
     def get_block(self, x, y):
         pos = self.get_block_field_position(x, y)
@@ -70,6 +73,8 @@ class GameField:
     def is_solid(self, x, y):
         block = self.get_block(x, y)
         if block is None:
+            return False
+        if block.strength >= 1:
             return False
         return block.is_solid
 
