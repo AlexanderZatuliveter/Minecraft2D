@@ -53,11 +53,11 @@ class GameField:
             int(y // self.__block_size)
         )
 
-    def drop_block(self, x, y):
+    def hit_block(self, x, y, hit_force):
         pos = self.get_block_field_position(x, y)
         block = self.field[pos[0]][pos[1]]
         if block:
-            block.health -= 1
+            block.health -= hit_force
             if block.health <= 0:
                 self.field[pos[0]][pos[1]] = None
                 if block.sound:

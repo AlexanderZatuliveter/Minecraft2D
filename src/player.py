@@ -1,3 +1,4 @@
+import sys
 import pygame
 from game_field import GameField
 from player_view import PlayerView
@@ -18,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_force = -6
         self.velocity_y = 0
         self.is_moving_left = False
+        self.hit_force = 1
 
     def __fall(self):
 
@@ -39,7 +41,8 @@ class Player(pygame.sprite.Sprite):
         left, middle, right = pygame.mouse.get_pressed()
         mouse_x, mouse_y = pygame.mouse.get_pos()
         if left:
-            self._game_field.drop_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y + self.y - HALF_SCREEN_HEIGHT)
+            self._game_field.hit_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y +
+                                       self.y - HALF_SCREEN_HEIGHT, self.hit_force)
         if right:
             self._game_field.put_block(mouse_x + self.x - HALF_SCREEN_WIDTH, mouse_y + self.y - HALF_SCREEN_HEIGHT)
 
