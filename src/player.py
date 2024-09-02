@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.gravity_force = 0.2
         self.jump_force = -6
         self.velocity_y = 0
+        self.is_moving_left = False
 
     def __fall(self):
 
@@ -47,9 +48,11 @@ class Player(pygame.sprite.Sprite):
 
         if keys[pygame.K_d]:
             is_moving = self._move_right()
+            self.is_moving_left = False
 
         if keys[pygame.K_a]:
             is_moving = self._move_left()
+            self.is_moving_left = True
 
         # can jump only if on the ground (velocity_y == 0)
         if keys[pygame.K_SPACE] and self.velocity_y == 0:
@@ -58,7 +61,7 @@ class Player(pygame.sprite.Sprite):
             is_moving = True
 
         self.is_moving = is_moving
-        self.player_view.update_image(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, self.is_moving)
+        self.player_view.update_image(HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT, self.is_moving, self.is_moving_left)
 
     def _move_right(self) -> bool:
 

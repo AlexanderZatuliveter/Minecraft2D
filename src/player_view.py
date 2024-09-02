@@ -8,7 +8,11 @@ class PlayerView(pygame.sprite.Sprite):
 
         utils = Utils()
 
-        self._body_image = utils.load_image('sprites/body.png')
+        self._body_left_image = utils.load_image('sprites/body_left.png')
+        self._body_left_image_rect = self._body_left_image.get_rect()
+
+        self._body_right_image = utils.load_image('sprites/body_right.png')
+        self._body_right_image_rect = self._body_right_image.get_rect()
 
         self._leg_image = utils.load_image('sprites/leg.png')
         self._leg_image_rect = self._leg_image.get_rect()
@@ -24,7 +28,7 @@ class PlayerView(pygame.sprite.Sprite):
 
         self._max_rotate_angle = 25
 
-    def update_image(self, x, y, is_moving):
+    def update_image(self, x, y, is_moving, is_moving_left):
         self.image = pygame.Surface((x + 30, y + 90), pygame.SRCALPHA)
         self.rect = self.image.get_rect()
 
@@ -35,7 +39,10 @@ class PlayerView(pygame.sprite.Sprite):
         self._blit_arm(self._arm_image, x, y, -self.arm_rotate)
         self._blit_leg(self._leg_image, x, y, self.leg_rotate)
 
-        self.image.blit(self._body_image, (x, y))
+        if is_moving_left:
+            self.image.blit(self._body_left_image, (x, y))
+        else:
+            self.image.blit(self._body_right_image, (x, y))
 
         self._blit_leg(self._leg_image, x, y, -self.leg_rotate)
         self._blit_arm(self._arm_image, x, y, self.arm_rotate)

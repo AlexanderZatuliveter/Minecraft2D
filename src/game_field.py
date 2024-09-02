@@ -18,10 +18,10 @@ class GameField:
             self.field[0][j] = Bedrock()
             self.field[x-1][j] = Bedrock()
 
-        for n in range(200):
-            rand_x = random.randint(1, x-2)
-            rand_y = random.randint(1, y-2)
-            self.field[rand_x][rand_y] = random.choice((Dirt(), Stone()))
+        # for n in range(200):
+        #     rand_x = random.randint(1, x-2)
+        #     rand_y = random.randint(1, y-2)
+        #     self.field[rand_x][rand_y] = random.choice((Dirt(), Stone()))
 
         self.__block_size = 24
 
